@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Bhoomi ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Poppins',sans-serif;
+  color:white;
+  overflow:hidden;
+  background:linear-gradient(-45deg,#ff758c,#ff7eb3,#8e2de2,#4a00e0);
+  background-size:400% 400%;
+  animation:bgMove 12s ease infinite;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.page{
+  display:none;
+  min-height:100vh;
+  padding:70px 20px;
+  text-align:center;
+  animation:fade 1s ease;
+}
+
+.page.active{display:block}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+h1,h2{
+  font-family:'Great Vibes',cursive;
+  text-shadow:0 0 20px rgba(255,255,255,.7);
+}
+
+h1{font-size:3.5rem}
+h2{font-size:2.6rem}
+
+p{
+  max-width:720px;
+  margin:25px auto;
+  font-size:1.15rem;
+  line-height:1.9;
+  opacity:.95;
+}
+
+button{
+  padding:14px 36px;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(45deg,#ff4d6d,#ff9a9e);
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(255,77,109,.7);
+  transition:.3s;
+}
+
+button:hover{transform:scale(1.08)}
+
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:18px;
+  animation:floatUp linear infinite;
+  opacity:.8;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0)}
+  to{transform:translateY(-110vh)}
+}
+
+.letter{
+  background:rgba(255,255,255,.15);
+  padding:30px;
+  border-radius:20px;
+  max-width:760px;
+  margin:30px auto;
+  font-family:'Great Vibes',cursive;
+  font-size:1.6rem;
+  line-height:2.1;
+  box-shadow:0 0 30px rgba(255,255,255,.3);
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<section class="page active" id="p1">
+  <h1>Bhoomi ❤️</h1>
+  <p>Some names don’t just sound beautiful…  
+     they feel like home.  
+     And yours lives quietly in my heart.</p>
+  <button onclick="goPage(2)">Continue →</button>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="p2">
+  <h2>Before You ✨</h2>
+  <p>Life was moving… days were passing…  
+     but nothing truly stayed.  
+     Then you came — and moments learned how to pause.</p>
+  <button onclick="goPage(3)">Next 💖</button>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="p3">
+  <h2>You Changed Everything 🌸</h2>
+  <p>You made silence feel safe.  
+     You made smiles honest.  
+     Somehow… you made me feel complete.</p>
+  <button onclick="goPage(4)">Read My Letter ✍️</button>
+</section>
+
+<!-- PAGE 4 LETTER -->
+<section class="page" id="p4">
+  <h2>A Letter For You 💌</h2>
+  <div class="letter" id="letter"></div>
+  <button onclick="goPage(5)">Almost There 🌹</button>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="p5">
+  <h2>One Truth 💫</h2>
+  <p>I don’t promise perfection.  
+     I promise presence.  
+     I don’t promise a flawless story…  
+     I promise a real one — with you.</p>
+  <button onclick="goPage(6)">Final 💍</button>
+</section>
+
+<!-- PAGE 6 -->
+<section class="page" id="p6">
+  <h1>Will You Be Mine Forever? 💍</h1>
+  <p>Not just today…  
+     not just this moment…  
+     but every tomorrow that waits ahead.</p>
+  <button onclick="yesClick()">YES 💖</button>
+</section>
+
+<script>
+let currentPage = 1;
+
+function goPage(n){
+  document.getElementById("p"+currentPage).classList.remove("active");
+  currentPage = n;
+  document.getElementById("p"+currentPage).classList.add("active");
+}
+
+// Floating hearts
+setInterval(()=>{
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "💖";
+  h.style.left = Math.random()*100 + "vw";
+  h.style.animationDuration = (4 + Math.random()*4) + "s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},400);
+
+// Handwritten letter
+const letterText = `My dearest Bhoomi,
+
+Somewhere between your smile
+and your silence,
+my heart chose you.
+
+If love is a journey,
+I don’t want shortcuts —
+I just want your hand
+for every step.
+
+Always yours.`;
+
+let i = 0;
+const letterDiv = document.getElementById("letter");
+
+function typeLetter(){
+  if(i < letterText.length){
+    letterDiv.innerHTML += letterText[i] === "\n" ? "<br>" : letterText[i];
+    i++;
+    setTimeout(typeLetter,55);
+  }
+}
+
+setTimeout(typeLetter,1200);
+
+// YES click
+function yesClick(){
+  document.body.innerHTML = `
+    <section class="page active">
+      <h1>She Said YES 💞</h1>
+      <p>This is no longer a question.<br>
+      It’s a promise — written by fate, sealed by love.</p>
+    </section>
+  `;
+}
+</script>
+
+</body>
+</html>
